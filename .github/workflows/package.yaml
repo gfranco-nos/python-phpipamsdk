@@ -1,0 +1,35 @@
+name: Package
+
+on:
+  # push:
+  #   branches: [main, dev]
+  #   paths:
+  #     - "phpipamsdk/*"
+  workflow_dispatch:
+
+env:
+  REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+
+jobs:
+  build:
+    name: Create Tgz
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Debug Info
+        run: |
+          echo "${{ env.GITHUB_REF_NAME }}"
+          echo "${{ github.ref_name }}"
+          env
+
+      - name: Build
+        run: |
+          python3 -m build
+
+      - name: Upload as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: dist/
