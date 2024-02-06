@@ -34,7 +34,8 @@ class SubnetsApi(object):
         'state_id': 'state',
         'threshold': 'threshold',
         'firewall_address_object': 'firewallAddressObject',
-        'location_id': 'location'
+        'location_id': 'location',
+        'custom_Environment': 'custom_Environment'
     }
 
     def __init__(self, phpipam=None):
